@@ -1,10 +1,10 @@
 package xyz.xenondevs.invui.item.impl;
 
-import org.bukkit.Bukkit;
+import com.github.puregero.multilib.MultiLib;
+import com.github.puregero.multilib.regionized.RegionizedTask;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
 import xyz.xenondevs.invui.InvUI;
 import xyz.xenondevs.invui.item.Item;
@@ -19,7 +19,7 @@ public class AutoCycleItem extends AbstractItem {
     
     private final ItemProvider[] itemProviders;
     private final int period;
-    private BukkitTask task;
+    private RegionizedTask task;
     
     private int state;
     
@@ -30,7 +30,7 @@ public class AutoCycleItem extends AbstractItem {
     
     public void start() {
         if (task != null) task.cancel();
-        task = Bukkit.getScheduler().runTaskTimer(InvUI.getInstance().getPlugin(), this::cycle, 0, period);
+        task = MultiLib.getGlobalRegionScheduler().runAtFixedRate(InvUI.getInstance().getPlugin(), (ignored) -> this.cycle(), 0, period);
     }
     
     public void cancel() {

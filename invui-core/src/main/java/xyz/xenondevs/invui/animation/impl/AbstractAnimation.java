@@ -1,8 +1,8 @@
 package xyz.xenondevs.invui.animation.impl;
 
-import org.bukkit.Bukkit;
+import com.github.puregero.multilib.MultiLib;
+import com.github.puregero.multilib.regionized.RegionizedTask;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
 import xyz.xenondevs.invui.InvUI;
 import xyz.xenondevs.invui.animation.Animation;
@@ -33,7 +33,7 @@ public abstract class AbstractAnimation implements Animation {
     private List<Window> windows;
     private CopyOnWriteArrayList<Integer> slots;
     private BiConsumer<Integer, Integer> show;
-    private BukkitTask task;
+    private RegionizedTask task;
     
     private int frame;
     private int noViewerTicks;
@@ -72,7 +72,7 @@ public abstract class AbstractAnimation implements Animation {
     
     @Override
     public void start() {
-        task = Bukkit.getScheduler().runTaskTimer(InvUI.getInstance().getPlugin(), () -> {
+        task = MultiLib.getGlobalRegionScheduler().runAtFixedRate(InvUI.getInstance().getPlugin(), (ignored) -> {
             // if there are no viewers for more than 3 ticks, the animation can be cancelled
             if (getCurrentViewers().isEmpty()) {
                 noViewerTicks++;
@@ -81,7 +81,7 @@ public abstract class AbstractAnimation implements Animation {
                     return;
                 }
             } else noViewerTicks = 0;
-            
+
             // handle the next frame
             handleFrame(frame);
             frame++;

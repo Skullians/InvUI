@@ -1,6 +1,6 @@
 package xyz.xenondevs.invui.item.impl;
 
-import org.bukkit.Bukkit;
+import com.github.puregero.multilib.MultiLib;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -25,10 +25,10 @@ public class AsyncItem extends AbstractItem {
     
     public AsyncItem(@Nullable ItemProvider itemProvider, @NotNull Supplier<? extends ItemProvider> providerSupplier) {
         this.itemProvider = itemProvider == null ? new ItemWrapper(new ItemStack(Material.AIR)) : itemProvider;
-        
-        Bukkit.getScheduler().runTaskAsynchronously(InvUI.getInstance().getPlugin(), () -> {
+
+        MultiLib.getAsyncScheduler().runNow(InvUI.getInstance().getPlugin(), (ignored) -> {
             this.itemProvider = providerSupplier.get();
-            Bukkit.getScheduler().runTask(InvUI.getInstance().getPlugin(), this::notifyWindows);
+            MultiLib.getGlobalRegionScheduler().run(InvUI.getInstance().getPlugin(), (task) -> this.notifyWindows());
         });
     }
     

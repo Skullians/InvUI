@@ -15,11 +15,11 @@
 
     <profiles>
         <profile>
-            <id>xenondevs-nms</id>
+            <id>terrabytedev-private</id>
             <repositories>
                 <repository>
-                    <id>xenondevs-nms</id>
-                    <url>https://repo.xenondevs.xyz/nms/</url>
+                    <id>terrabytedev-private</id>
+                    <url>https://repo.terrabytedev.com/private/</url>
                 </repository>
             </repositories>
         </profile>
@@ -44,6 +44,10 @@
         <repository>
             <id>codemc-maven-public</id>
             <url>https://repo.codemc.org/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>clojars</id>
+            <url>https://repo.clojars.org</url>
         </repository>
     </repositories>
 
@@ -126,8 +130,8 @@
 
     <distributionManagement>
         <repository>
-            <id>xenondevs</id>
-            <url>https://repo.xenondevs.xyz/releases</url>
+            <id>terrabytedev</id>
+            <url>https://repo.terrabytedev.com/releases</url>
         </repository>
     </distributionManagement>
 
