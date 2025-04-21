@@ -4,10 +4,14 @@
 ![GitHub issues](https://img.shields.io/github/issues/NichtStudioCode/InvUI)
 ![License](https://img.shields.io/github/license/NichtStudioCode/InvUI)
 
-# InvUI
+# InvUI-Folia
 
 An Inventory API for Minecraft Spigot servers.  
 Supports all versions from 1.14.0 to 1.21.5.
+
+## Changes in this Fork
+This fork replaces references to the Bukkit scheduler with [MultiLib](https://github.com/MultiPaper/MultiLib) region schedulers,
+and async schedulers, aiming to add support for Folia.
 
 [Documentation](https://xenondevs.xyz/docs/invui/)
 
@@ -29,8 +33,9 @@ Supports all versions from 1.14.0 to 1.21.5.
 
 ```xml
 <repository>
-    <id>xenondevs</id>
-    <url>https://repo.xenondevs.xyz/releases</url>
+    <id>terrabytedev-releases</id>
+    <name>TerraByteDev Repository</name>
+    <url>https://repo.terrabytedev.com/releases</url>
 </repository>
 ```
 
